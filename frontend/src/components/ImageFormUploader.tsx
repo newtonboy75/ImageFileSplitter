@@ -60,7 +60,7 @@ const ImageFormUploader = () => {
     const splitFile = () => {
       setImageResults(null);
       if (imageFile) {
-        let headers = new Headers();
+        
         fetch(
           `http://localhost:5000/split_file?file_name=${imageName}&rows=${rowNum.toString()}&columns=${colNum.toString()}`
         )
