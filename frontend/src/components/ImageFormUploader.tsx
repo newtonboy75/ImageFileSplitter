@@ -19,7 +19,7 @@ const ImageFormUploader = () => {
     setIsToggled(true);
 
     if (imageFile) {
-      fetch(`http://localhost:5000/get_file?file_name=${imageName}`)
+      fetch(`http://localhost:5000/get_file?file_name=${imageName}&rows=${rowNum.toString()}&columns=${colNum.toString()}`)
         .then((res) => res.json())
         .then((res) => setImageResults(res))
         .then(()=> window.scrollTo(0, 80))
