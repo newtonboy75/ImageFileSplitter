@@ -22,6 +22,7 @@ const ImageFormUploader = () => {
       fetch(`http://localhost:5000/get_file?file_name=${imageName}`)
         .then((res) => res.json())
         .then((res) => setImageResults(res))
+        .then(()=> window.scrollTo(0, 80))
         .finally(() => setLoading(false));
     }
   };
