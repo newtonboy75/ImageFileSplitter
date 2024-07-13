@@ -19,6 +19,7 @@ export default (router: express.Router) => {
   router.post("/upload_files", upload.single("file"), async (req, res) => {
     res.json("File Uploaded successfully");
   });
+  
   //process image file
   router.get("/split_file", async (req, res) => {
     const { file_name, rows, columns } = req.query;
@@ -36,6 +37,27 @@ export default (router: express.Router) => {
   //get list of files
   router.get("/get_file", async (req, res) => {
     const { file_name } = req.query;
+    console.log(file_name);
+    let seconds = 1000;
+
+    //get file size and base timer seconds of filesize
+    fs.stat("uploads/" + file_name, (err, stats) => {
+      if (err) {
+        console.error(err);
+      } else {
+        let fileSize = Math.floor(stats.size / 1000);
+
+        if (fileSize < 5000) {
+          seconds = 1000;
+        } else if (fileSize >= 5000 && fileSize <= 8000) {
+          seconds = 3000;
+        } else if (fileSize >= 8000 && fileSize <= 10000) {
+          seconds = 6000;
+        } else {
+          seconds = 10000;
+        }
+      }
+    });
 
     const directory_name = `public/${file_name
       .toString()
@@ -48,6 +70,6 @@ export default (router: express.Router) => {
 
     setTimeout(function () {
       res.send(files);
-    }, 6000);
+    }, seconds);
   });
 };

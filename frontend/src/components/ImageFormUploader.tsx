@@ -31,6 +31,7 @@ const ImageFormUploader = () => {
     setImageFile(null);
     setImageName("");
     setImageResults(null);
+    setResetForm(false);
 
     if (e.target.files && e.target.files.length > 0) {
       setImageFile(e.target.files[0]);
@@ -72,7 +73,6 @@ const ImageFormUploader = () => {
   }, [rowNum, colNum]);
 
   useEffect(() => {
-    //console.log('test')
     if (imageFile) {
       setResetForm(true);
     }
@@ -86,11 +86,17 @@ const ImageFormUploader = () => {
     <div className="App m-3 p-0">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 h-screen">
         <div className="flex flex-col items-center justify-center w-full h-full">
-          {!imageFile && <div>
-            <h2 className="font-semibold text-lg">Welcome to Image Grid Splitter.</h2> <div className="mt-2 mb-2">Click to the Upload button to start.</div>
-          </div>
-          }
-          
+          {!imageFile && (
+            <div>
+              <h2 className="font-semibold text-lg">
+                Welcome to Image Grid Splitter.
+              </h2>{" "}
+              <div className="mt-2 mb-2">
+                Click to the Upload button to start.
+              </div>
+            </div>
+          )}
+
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col items-center mb-20">
               <label
@@ -99,7 +105,7 @@ const ImageFormUploader = () => {
               >
                 Upload Image File
               </label>
-              
+
               <input
                 onChange={setImageToPreview}
                 type="file"
