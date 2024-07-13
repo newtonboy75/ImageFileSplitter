@@ -1,6 +1,8 @@
 node_modules
-uploads
 package-lock.json
 public/**
 !public/**/
 !public/**/.gitkeep
+uploads/**
+!uploads/**/
+!uploads/**/.gitkeep
