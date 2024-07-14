@@ -40,8 +40,6 @@ export default (router: express.Router) => {
         columns: columns,
       };
 
-      console.log(gridSize)
-
       /**
        * find file and get file size
        * calculate seconds based on file size and numbers of
@@ -54,10 +52,8 @@ export default (router: express.Router) => {
       if (fileSize <= 1000) {
         seconds = 1000;
       } else {
-        //gridSize 
         seconds = (fileSize + gridSize);
       }
-      //console.log(seconds)
 
       //start processing file and return results
       const splittedImages = await splitImage(data).then((result) => {

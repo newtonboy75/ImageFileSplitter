@@ -46,7 +46,6 @@ export const splitImage = async (data: {
               width: splitWidth,
               height: splitHeight,
             })
-            //.webp({ quality: 80 })
             .toFile(output_name, function (err) {});
 
           splittedImages.push(output_name.replace("public", ""));

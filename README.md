@@ -33,7 +33,7 @@ About the project:
 
 Demo: 
 
-   Link to the screen recording: https://drive.google.com/file/d/1L2KT9r20pTUQFuUGsC2DSGk1RVhOwuJM/view?usp=sharing
+   Link to the screen recording: https://drive.google.com/file/d/1y_doQOPLhiXjnMlmmG77jqIYeqFnK6c2/view?usp=sharing
 
 
 Thank you and looking forward to talking to you!!!

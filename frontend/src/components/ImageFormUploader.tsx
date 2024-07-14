@@ -17,8 +17,8 @@ const ImageFormUploader = () => {
     setImageResults(null);
     setLoading(true);
     setIsToggled(true);
-    console.log(rowNum, colNum);
 
+    //get splitted files
     if (imageFile) {
       fetch(
         `http://localhost:5000/get_file?file_name=${imageName}&rows=${rowNum.toString()}&columns=${colNum.toString()}`
