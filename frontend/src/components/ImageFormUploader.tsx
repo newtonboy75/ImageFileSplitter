@@ -61,6 +61,9 @@ const ImageFormUploader = () => {
 
   useEffect(() => {
     if (imageFile) {
+      setColNum(1);
+      setRowNum(1);
+
       setResetForm(true);
     }
   }, [imageFile]);
@@ -159,7 +162,10 @@ const ImageFormUploader = () => {
             <div className="p-10 text-center items-center justify-center">
               {loading && (
                 <div className="items-center">
-                  <img className="max-w-screen-sm h-20 self-center mx-auto" src="wait-square.gif"/>
+                  <img
+                    className="max-w-screen-sm h-20 self-center mx-auto"
+                    src="wait-square.gif"
+                  />
                   <span>splitting image... please wait...</span>
                 </div>
               )}

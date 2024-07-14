@@ -30,8 +30,8 @@ export default (router: express.Router) => {
     async (req: express.Request, res: express.Response) => {
       const { file_name, rows, columns } = req.query;
 
-      //default timer seconds
-      let seconds =
+      //get grid size
+      let gridSize =
         parseInt(rows.toString()) * parseInt(columns.toString()) * 1000;
 
       const data = {
@@ -40,25 +40,24 @@ export default (router: express.Router) => {
         columns: columns,
       };
 
+      console.log(gridSize)
+
       /**
        * find file and get file size
        * calculate seconds based on file size and numbers of
        * rows and columns
        */
       const fStats = fs.statSync("uploads/" + file_name);
+      let seconds = 0
       let fileSize = Math.floor(fStats.size / 1000);
-
-      if (fileSize < 1000) {
+      
+      if (fileSize <= 1000) {
         seconds = 1000;
-      } else if (fileSize >= 1000 && fileSize < 5000) {
-        seconds += 1000;
-      } else if (fileSize >= 5000 && fileSize <= 8000) {
-        seconds += 1500;
-      } else if (fileSize >= 8000 && fileSize <= 10000) {
-        seconds += 6500;
       } else {
-        seconds += 10000;
+        //gridSize 
+        seconds = (fileSize + gridSize);
       }
+      //console.log(seconds)
 
       //start processing file and return results
       const splittedImages = await splitImage(data).then((result) => {
