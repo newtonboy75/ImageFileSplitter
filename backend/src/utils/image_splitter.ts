@@ -25,7 +25,7 @@ export const splitImage = async (data: {
 
   const sharpenImage = sharp(input)
     .metadata()
-    .then((metadata) => {
+    .then(async (metadata) => {
       const splitHeight = Math.floor(metadata.height / rows);
       const splitWidth = Math.floor(metadata.width / columns);
       let counter = 1;
@@ -39,19 +39,17 @@ export const splitImage = async (data: {
 
           counter++;
 
-          sharp(input, { animated: true })
+          await sharp(input, { animated: true })
             .extract({
               left: y,
               top: x,
               width: splitWidth,
               height: splitHeight,
             })
-            .webp({ quality: 80 })
-            .toFile(output_name, function (err) {
-              
-            });
+            //.webp({ quality: 80 })
+            .toFile(output_name, function (err) {});
 
-          splittedImages.push(output_name.replace("public/", ""));
+          splittedImages.push(output_name.replace("public", ""));
         }
       }
 

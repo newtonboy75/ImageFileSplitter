@@ -17,12 +17,15 @@ const ImageFormUploader = () => {
     setImageResults(null);
     setLoading(true);
     setIsToggled(true);
+    console.log(rowNum, colNum);
 
     if (imageFile) {
-      fetch(`http://localhost:5000/get_file?file_name=${imageName}&rows=${rowNum.toString()}&columns=${colNum.toString()}`)
+      fetch(
+        `http://localhost:5000/get_file?file_name=${imageName}&rows=${rowNum.toString()}&columns=${colNum.toString()}`
+      )
         .then((res) => res.json())
         .then((res) => setImageResults(res))
-        .then(()=> window.scrollTo(0, 80))
+        .then(() => window.scrollTo(0, 80))
         .finally(() => setLoading(false));
     }
   };
@@ -55,23 +58,6 @@ const ImageFormUploader = () => {
   const getToggle = (val: boolean) => {
     setIsToggled(val);
   };
-
-  useEffect(() => {
-    //start splitting files
-    const splitFile = () => {
-      setImageResults(null);
-      if (imageFile) {
-        
-        fetch(
-          `http://localhost:5000/split_file?file_name=${imageName}&rows=${rowNum.toString()}&columns=${colNum.toString()}`
-        )
-          .then((res) => res.json())
-          .finally(() => setLoading(false));
-      }
-    };
-
-    splitFile();
-  }, [rowNum, colNum]);
 
   useEffect(() => {
     if (imageFile) {
