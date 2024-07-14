@@ -51,11 +51,11 @@ export default (router: express.Router) => {
       if (fileSize < 1000) {
         seconds = 1000;
       } else if (fileSize >= 1000 && fileSize < 5000) {
-        seconds = 2000;
+        seconds += 1000;
       } else if (fileSize >= 5000 && fileSize <= 8000) {
-        seconds = 3000;
+        seconds += 1500;
       } else if (fileSize >= 8000 && fileSize <= 10000) {
-        seconds += 6000;
+        seconds += 6500;
       } else {
         seconds += 10000;
       }
